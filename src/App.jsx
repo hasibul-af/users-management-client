@@ -22,9 +22,18 @@ function App() {
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(user)
-    });
+      body:JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        const newUsers = [...users, data]
+        setUsers(newUsers);
+        form.reset();
+      })
   }
+
+
 
   return (
     <>
@@ -35,6 +44,7 @@ function App() {
         <input type="text" name="name" id="" />
         <br />
         <input type="email" name="email" id="" />
+        <br />
         <br />
         <input type="submit" value="Add User" />
       </form>
